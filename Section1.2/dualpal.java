@@ -53,5 +53,6 @@ public class dualpal{
 
 		out.close();
 		f.close();
+		
 	}
 }
