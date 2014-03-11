@@ -1,0 +1,65 @@
+/*
+ID: liudi192
+LANG: JAVA
+TASK: namenum
+*/
+
+import java.util.*;
+import java.io.*;
+
+public class namenum{
+	public static void main(String[] argv) throws IOException{
+		BufferedReader f = new BufferedReader(new FileReader("namenum.in"));
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("namenum.out")));
+		BufferedReader dict = new BufferedReader(new FileReader("dict.txt"));
+
+		long N = Long.parseLong(f.readLine());
+
+		int dictsize = 0;
+		
+		String[] d = new String[5000];
+		
+		String nextline;
+
+		while((nextline = dict.readLine())!= null){
+			//System.out.println(nextline);
+			d[dictsize] = new String(nextline);
+			dictsize++;
+		}
+		int i,j;
+		//String test = new String("what");
+		//System.out.println(('D' - 'A')/3 + 2);
+		long length, num;
+		int counter = 0;
+		int charNum = 0;
+		for( i = 0; i < dictsize; i++ ){
+			length = d[i].length();
+			num = 0;
+			for(j = 0; j < length; j ++ ){
+				if(d[i].charAt(j) < 'Q')
+				{
+					charNum = ( d[i].charAt(j)- 'A')/3 + 2;
+				} else
+				{
+					charNum = ( d[i].charAt(j) - 1 - 'A')/3 + 2;
+				}
+				
+				num = num*10 + charNum;
+			}
+			System.out.println(num);
+			if(num == N){
+				counter++;
+				out.println(d[i]);
+			}
+		}
+		if(counter ==0){
+			out.println("NONE");
+		}
+		f.close();
+		dict.close();
+		out.close();
+
+
+	}
+
+}
